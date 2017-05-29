@@ -207,10 +207,10 @@ namespace :ubuntu_server_prepare do
             execute sudo_command + "cp -f ~/sources/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx.conf"
             puts (sudo_command + "status nginx")
             nginx_status = capture(sudo_command + "status nginx")
-            if nginx_status == 'nginx stop/waiting'
+            if nginx_status == '[sudo] password for deploy: nginx stop/waiting'
                 execute sudo_command + "start nginx"
             else
-                execute sudo_command + 'start nginx'
+                execute sudo_command + 'restart nginx'
             end
         end
     end
@@ -263,7 +263,7 @@ namespace :ubuntu_server_prepare do
             execute sudo_command + "cp -f ~/sources/redis/conf/redis.conf /etc/redis/"
 
             redis_status = capture(sudo_command + "status redis-server")
-            if redis_status == 'redis-server stop/waiting'
+            if redis_status == '[sudo] password for deploy: redis-server stop/waiting'
                 execute sudo_command + "start redis-server"
             else
                 execute sudo_command + 'restart redis-server'

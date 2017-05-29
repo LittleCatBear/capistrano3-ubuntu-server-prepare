@@ -205,11 +205,12 @@ namespace :ubuntu_server_prepare do
             upload! 'config/production/nginx/upstart.conf', "/home/#{user}/sources/nginx/conf/"
             execute sudo_command + "cp -f ~/sources/nginx/conf/upstart.conf /etc/init/nginx.conf"
             execute sudo_command + "cp -f ~/sources/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx.conf"
+            puts (sudo_command + "status nginx")
             nginx_status = capture(sudo_command + "status nginx")
             if nginx_status == 'nginx stop/waiting'
                 execute sudo_command + "start nginx"
             else
-                execute sudo_command + 'restart nginx'
+                execute sudo_command + 'start nginx'
             end
         end
     end

@@ -68,10 +68,10 @@ namespace :ubuntu_server_prepare do
             set :password, ask("your server sudo password", nil)
             password = fetch(:password)
             puts 'Checking password'
-            puts capture("echo #{password} | sudo -kS echo true").strip
-            if '[sudo] password for deploy: true' == capture("echo #{password} | sudo -kS echo true").strip
+            puts capture("echo #{password} | sudo echo true").strip
+            if '[sudo] password for deploy: true' == capture("echo #{password} | sudo echo true").strip
                 set :sudo_password, password
-                set :sudo_command, "echo #{password} | sudo -kS "
+                set :sudo_command, "echo #{password} | sudo "
                 puts "Password correct"
             else
                 raise "Password incorrect"

@@ -317,7 +317,7 @@ namespace :ubuntu_server_prepare do
         sudo_command = fetch(:sudo_command)
         if !sudo_command
             #invoke "ubuntu_server_prepare:ask_password"
-            #sudo_command = fetch(:sudo_command)
+            sudo_command = fetch(:sudo_command)
         end
         return sudo_command
     end

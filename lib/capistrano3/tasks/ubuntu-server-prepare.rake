@@ -71,7 +71,7 @@ namespace :ubuntu_server_prepare do
             puts capture("echo #{password} | sudo -S echo true").strip
             if '[sudo] password for deploy: true' == capture("echo #{password} | sudo -S echo true").strip
                 set :sudo_password, password
-                set :sudo_command, "sudo -S"
+                set :sudo_command, "sudo -S "
                 puts "Password correct"
             else
                 raise "Password incorrect"

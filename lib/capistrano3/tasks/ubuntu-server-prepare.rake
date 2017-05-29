@@ -238,6 +238,7 @@ namespace :ubuntu_server_prepare do
             end
             within "~/sources/redis/redis-stable" do
                 execute :make
+                execute sudo_command + "sudo make install"
             end
             execute sudo_command + "cp -f ~/sources/redis/redis-stable/src/redis-server /usr/local/bin/"
             execute sudo_command + "cp -f ~/sources/redis/redis-stable/src/redis-cli /usr/local/bin/"
